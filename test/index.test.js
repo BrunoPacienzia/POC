@@ -1,5 +1,5 @@
-import assert from 'assert';
-import { asincrona, sincrona, fetchData, fetchData_2 } from '../index.js';
+import assert from "assert";
+import { asincrona, sincrona, fetchData, fetchData_2 } from "../index.js";
 
 // Testeamos funcion sincrona
 
@@ -46,79 +46,112 @@ import { asincrona, sincrona, fetchData, fetchData_2 } from '../index.js';
 // });
 
 function add(args) {
-	return args.reduce((prev, curr) => prev + curr, 0);
+  return args.reduce((prev, curr) => prev + curr, 0);
 }
 
-describe.only('add() en paralelo 2', function () {
-	let startTime;
+describe("add() en paralelo 2", function () {
+  let startTime;
 
-	before(function () {
-		startTime = Date.now();
-	});
+  before(function () {
+    startTime = Date.now();
+  });
 
-	after(function () {
-		const endTime = Date.now();
-		const duration = endTime - startTime;
-		console.log(`Test suite took ${duration}ms to run.`);
-	});
+  after(function () {
+    const endTime = Date.now();
+    const duration = endTime - startTime;
+    console.log(`Test suite took ${duration}ms to run.`);
+  });
 
-	let tests = [];
+  let tests = [];
 
-	for (let i = 0; i < 7000; i++) {
-		let newElement = { args: [], expected: sumToN(i + 1) };
+  for (let i = 0; i < 7000; i++) {
+    let newElement = { args: [], expected: sumToN(i + 1) };
 
-		for (let j = 0; j < i + 1; j++) {
-			newElement.args.push(j + 1);
-		}
+    for (let j = 0; j < i + 1; j++) {
+      newElement.args.push(j + 1);
+    }
 
-		tests.push(newElement);
-	}
+    tests.push(newElement);
+  }
 
-	tests.forEach(({ args, expected }) => {
-		it(`correctly adds ${args.length} args`, function () {
-			const res = add(args);
-			assert.strictEqual(res, expected);
-		});
-	});
+  tests.forEach(({ args, expected }) => {
+    it(`correctly adds ${args.length} args`, function () {
+      const res = add(args);
+      assert.strictEqual(res, expected);
+    });
+  });
 });
 
 function sumToN(n) {
-	let sum = 0;
-	for (let i = 0; i <= n; i++) {
-		sum += i;
-	}
-	return sum;
+  let sum = 0;
+  for (let i = 0; i <= n; i++) {
+    sum += i;
+  }
+  return sum;
 }
 
-describe('add()', function () {
-	let startTime;
+describe("add()", function () {
+  let startTime;
 
-	before(function () {
-		startTime = Date.now();
-	});
+  before(function () {
+    startTime = Date.now();
+  });
 
-	after(function () {
-		const endTime = Date.now();
-		const duration = endTime - startTime;
-		console.log(`Test suite took ${duration}ms to run.`);
-	});
+  after(function () {
+    const endTime = Date.now();
+    const duration = endTime - startTime;
+    console.log(`Test suite took ${duration}ms to run.`);
+  });
 
-	let tests = [];
+  let tests = [];
 
-	for (let i = 0; i < 7000; i++) {
-		let newElement = { args: [], expected: sumToN(i + 1) };
+  for (let i = 0; i < 7000; i++) {
+    let newElement = { args: [], expected: sumToN(i + 1) };
 
-		for (let j = 0; j < i + 1; j++) {
-			newElement.args.push(j + 1);
-		}
+    for (let j = 0; j < i + 1; j++) {
+      newElement.args.push(j + 1);
+    }
 
-		tests.push(newElement);
-	}
+    tests.push(newElement);
+  }
 
-	tests.forEach(({ args, expected }) => {
-		it(`correctly adds ${args.length} args`, function () {
-			const res = add(args);
-			assert.strictEqual(res, expected);
-		});
-	});
+  tests.forEach(({ args, expected }) => {
+    it(`correctly adds ${args.length} args`, function () {
+      const res = add(args);
+      assert.strictEqual(res, expected);
+    });
+  });
+});
+
+describe("add2()", function () {
+  let startTime;
+
+  before(function () {
+    startTime = Date.now();
+  });
+
+  after(function () {
+    const endTime = Date.now();
+    const duration = endTime - startTime;
+    console.log(`Test suite took ${duration}ms to run.`);
+  });
+
+  let tests = [];
+
+  for (let i = 0; i < 7000; i++) {
+    let newElement = { args: [], expected: sumToN(i + 1) };
+
+    for (let j = 0; j < i + 1; j++) {
+      newElement.args.push(j + 1);
+    }
+
+    tests.push(newElement);
+  }
+
+  tests.forEach(({ args, expected }) => {
+    it(`PERUANO ${args.length} args`, function () {
+      const res = add(args);
+      assert.strictEqual(res, expected);
+    });
+  });
 });
